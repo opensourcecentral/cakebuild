@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="db-standard" basedir=".">
+<dirname property="spring.build.dir" file="${ant.file.db-standard}/.."/>
+<path id="compile.classpath">
+        <fileset dir="${spring.build.dir}/lib/jdbc" includes="*.jar"/>
+    </path>	
+<target name="db-drop-sp">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="continue" classpathref="compile.classpath" src="${dir.sql.main}/drop_sp.sql"/>
+	</target>
+	<target name="db-drop-views">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="continue" classpathref="compile.classpath" src="${dir.sql.main}/drop_views.sql"/>
+	</target>
+	<target name="db-drop-tables">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="continue" classpathref="compile.classpath" src="${dir.sql.main}/drop_tables.sql"/>
+	</target>
+
+	<target name="db-create-tables">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="abort" classpathref="compile.classpath" src="${dir.sql.main}/create_tables.sql"/>
+	</target>
+	<target name="db-create-views">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="abort" classpathref="compile.classpath" src="${dir.sql.main}/create_views.sql"/>
+	</target>
+	<target name="db-create-sp">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="abort" classpathref="compile.classpath" src="${dir.sql.main}/create_sp.sql"/>
+	</target>
+
+	<target name="db-data-production">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="abort" classpathref="compile.classpath" src="${dir.sql.main}/data.sql"/>
+	</target>	
+	<target name="db-data-test">
+		<sql driver="${db.driver}"
+		        url="${db.url}"
+		        userid="${db.username}"
+		        autocommit="true"
+		        password="${db.password}" onerror="abort" classpathref="compile.classpath" src="${dir.sql.test}/data.sql"/>
+	</target>	
+    
+</project>
